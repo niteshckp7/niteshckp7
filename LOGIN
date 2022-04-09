@@ -1,0 +1,99 @@
+Python 3.6.5 (v3.6.5:f59c0932b4, Mar 28 2018, 16:07:46) [MSC v.1900 32 bit (Intel)] on win32
+Type "copyright", "credits" or "license()" for more information.
+>>> 
+=================== RESTART: D:\Rakesh\Prod_DNM_rashmi.py ===================
+flag
+page_loadhttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:11:45.145205
+start_timehttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:11:44.520191
+flag3 1
+flag2 1
+page_loadhttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:12:45.991088
+start_timehttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:12:45.725448
+flag3 1
+flag2 1
+page_loadhttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:13:46.709467
+start_timehttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:13:46.459476
+flag3 1
+flag2 1
+page_load2022-03-02 12:14:47.654750
+start_time2022-03-02 12:14:47.292934
+OLAP flag 1
+flag 1
+>>> 
+=================== RESTART: D:\Rakesh\Prod_DNM_rashmi.py ===================
+flag
+page_loadhttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:18:13.070452
+start_timehttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:18:12.289189
+flag3 1
+flag2 1
+page_loadhttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:19:13.955288
+start_timehttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:19:13.705283
+flag3 1
+flag2 1
+page_loadhttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:20:14.766457
+start_timehttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:20:14.511441
+flag3 1
+flag2 1
+Traceback (most recent call last):
+  File "D:\Rakesh\Prod_DNM_rashmi.py", line 222, in <module>
+    browser.close()
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\lib\site-packages\selenium-3.12.0-py3.6.egg\selenium\webdriver\remote\webdriver.py", line 681, in close
+    self.execute(Command.CLOSE)
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\lib\site-packages\selenium-3.12.0-py3.6.egg\selenium\webdriver\remote\webdriver.py", line 312, in execute
+    response = self.command_executor.execute(driver_command, params)
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\lib\site-packages\selenium-3.12.0-py3.6.egg\selenium\webdriver\remote\remote_connection.py", line 472, in execute
+    return self._request(command_info[0], url, body=data)
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\lib\site-packages\selenium-3.12.0-py3.6.egg\selenium\webdriver\remote\remote_connection.py", line 495, in _request
+    self._conn.request(method, parsed_url.path, body, headers)
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\Lib\http\client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\Lib\http\client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\Lib\http\client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\Lib\http\client.py", line 1026, in _send_output
+    self.send(msg)
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\Lib\http\client.py", line 964, in send
+    self.connect()
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\Lib\http\client.py", line 936, in connect
+    (self.host,self.port), self.timeout, self.source_address)
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\Lib\socket.py", line 724, in create_connection
+    raise err
+  File "C:\Users\Siebel\AppData\Local\Programs\Python\Python36-32\Lib\socket.py", line 713, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+>>> 
+=================== RESTART: D:\Rakesh\Prod_DNM_rashmi.py ===================
+flag
+page_loadhttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:26:32.320606
+start_timehttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:26:31.633101
+flag2 1
+page_loadhttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:27:33.177855
+start_timehttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:27:32.896608
+flag2 1
+page_loadhttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:28:34.054613
+start_timehttps://TDRCRMUIDEVHF.tmindia.tatamotors.com/contactcenterOUI/
+2022-03-02 12:28:33.788993
+flag2 1
+page_load2022-03-02 12:29:35.046836
+start_time2022-03-02 12:29:34.690576
+OLAP flag 1
+flag 1
+>>> 
