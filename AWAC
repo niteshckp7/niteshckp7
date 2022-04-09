@@ -1,0 +1,240 @@
+from selenium import webdriver 
+from selenium.webdriver.common.keys import Keys 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+import time
+from datetime import datetime  
+from datetime import timedelta
+import fileinput
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import webbrowser
+import os
+import subprocess
+import re
+import traceback
+from selenium.webdriver.firefox.options import Options
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+
+print("flag")
+
+options = Options()
+options.add_argument("--headless")
+#ProfilesIni profile = new ProfilesIni()
+#FirefoxProfile myprofile = profile.getProfile("AWAC")
+
+profile = webdriver.FirefoxProfile("C:\\Users\\Siebel\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\31rc4aoj.AWAC")
+
+os.chdir("D:/Rakesh");
+msg = MIMEMultipart()
+sender = 'crmdms.reports@tatamotors.com'
+receivers = ['rashmib.tcs@tatamotors.com']
+
+if os.path.isfile("D:/Rakesh/output10.html"):
+    os.remove("D:/Rakesh/output10.html")
+
+
+url = 'http://172.24.45.93/SiebelBAU'
+browser = webdriver.Firefox(firefox_options=options,firefox_profile=profile)
+browser.delete_all_cookies()
+fexeption = open('exception.txt', 'a+')
+f = open('D:/Rakesh/output10.html', 'a+')
+f.write("<HTML><TITLE>AWAC</TITLE><BODY background-color:peachpuff><font color =""#99000"" face=""Microsoft Tai le""><H2>AWAC</H2></font><Table border=1 cellpadding=5><TR bgcolor=gray align=center><TD><B>Module</B></TD><TD><B>Login Page</B></TD><TD><B>Login Time</B></TD><TD><B>External Application Navigation</B></TD></TR>")
+fh = open('module.txt')
+line_1 = fh.readline()
+flag=0
+while line_1:
+        fd = open("URL_list_rashmi.txt","r")
+        for line in fd:
+            try:
+                start_time = datetime.now()
+                browser.get(line)
+               # time.sleep(3)
+                #browser.switch_to.alert.send_keys("TMINDIA\rakeshg.tcs" + Keys.TAB + "August@2018")
+                #time.sleep(3)
+                #browser.switch_to.alert.accept)
+                wait = WebDriverWait(browser, 10)
+                element = wait.until(EC.element_to_be_clickable((By.ID, 's_swepi_1')))
+                page_load = datetime.now()
+                page_load_time = (page_load) - (start_time) ########page load time
+                print("page_load"+ line + str(page_load))
+                print("start_time"+ line + str(start_time))
+                
+                page_load_time1 = str(page_load_time)[5:-4]
+                username = browser.find_element_by_id("s_swepi_1")
+                password = browser.find_element_by_id("s_swepi_2")
+                
+                if (re.match("Automotive", line_1) is not None) or (re.match("Contact Center", line_1) is not None):                    
+                    username.send_keys("SM_TCS")
+                    password.send_keys("Feb#1234")
+                    flag=1
+                else :
+                    username.send_keys("SM_TCS")
+                    password.send_keys("Feb#1234")
+                end = datetime.now()
+                #time.sleep(10)
+                
+                browser.find_element_by_id("s_swepi_22").click()
+                wait = WebDriverWait(browser, 60)
+            except Exception as e:
+                #print(e)
+                fexeption.write(traceback.format_exc())
+                #if not os.stat('output.html').st_size>0:
+                 #   f.write("<HTML><TITLE>AWAC</TITLE><BODY background-color:peachpuff><font color =""#99000"" face=""Microsoft Tai le""><H2>AWAC</H2></font><Table border=1 cellpadding=5><TR bgcolor=gray align=center><TD><B>Module</B></TD><TD><B>Login Page</B></TD><TD><B>Login Time</B></TD><TD><B>External Application Navigation</B></TD></TR>")
+                f.write("<tr><td>"+line_1+"</td><td bgcolor=#f01313>Error in Execution</td><td bgcolor=#f01313>Not Available</td><td bgcolor=#f01313>Not Available</td></tr>")
+                #f.write("\n")
+                flag=1
+                print("flag2",flag)
+            else:
+                try:
+                    element=wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,'div.Welcome')))
+                    end_time = datetime.now()
+                    browser.find_element_by_css_selector("span.siebui-icon-tb-sitemap.ToolbarButtonOn").click()
+                except Exception as e:
+                    #print(e)
+                    fexeption.write(traceback.format_exc())
+                    #if not os.stat('output.html').st_size>0:
+                        #f.write("<HTML><TITLE>AWAC</TITLE><BODY background-color:peachpuff><font color =""#99000"" face=""Microsoft Tai le""><H2>AWAC</H2></font><Table border=1 cellpadding=5><TR bgcolor=gray align=center><TD><B>Module</B></TD><TD><B>Login Page</B></TD><TD><B>Login Time</B></TD><TD><B>External Application Navigation</B></TD></TR>")                        
+                    f.write("<tr><td>"+line_1+"</td><td bgcolor=#81F781>"+str(page_load_time1)+"</td><td bgcolor=#f01313>Error in Execution</td><td bgcolor=#f01313>Not Available</td></tr>")
+                    flag=1
+                else:
+                    try:
+                        #time.sleep(10)
+                        wait = WebDriverWait(browser, 120)
+                        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.sitemapSectionTitle')))
+                        #if flag==0:
+                         #   wait = WebDriverWait(browser, 120)
+                          #  print("First if")
+                           # wait.until(EC.element_to_be_clickable((By.ID,'s_a_16')))
+                            #browser.find_element_by_id("s_a_16").click()
+                        #else:
+                         #   print("First else")
+                        wait = WebDriverWait(browser, 120)
+                            #wait.until(EC.element_located_to_be_selected((By.LINK_TEXT,'External Application')))
+                        #wait.until(EC.element_to_be_clickable((By.LINK_TEXT,'External Application')))
+                        #browser.find_element_by_link_text("External Application").click()
+                        #external_time = datetime.now() - timedelta(seconds=20)                        
+                        time.sleep(10)
+                        #browser.find_element_by_link_text("External Application").click()
+                        wait = WebDriverWait(browser, 20)
+                        if (re.match("Automotive", line_1) is not None):                   
+                            wait.until(EC.element_to_be_clickable((By.ID,'s_a_183')))
+                            browser.find_element_by_id("s_a_183").click()
+                        elif (re.match("Workshop", line_1) is not None):
+                            wait.until(EC.element_to_be_clickable((By.ID,'s_a_48')))
+                            browser.find_element_by_id("s_a_48").click()
+                        elif (re.match("Showroom", line_1) is not None):                
+                            wait.until(EC.element_to_be_clickable((By.ID,'s_a_42')))
+                            browser.find_element_by_id("s_a_42").click()
+                        elif (re.match("Distributor", line_1) is not None) :
+                            wait.until(EC.element_to_be_clickable((By.ID,'s_a_50')))
+                            browser.find_element_by_id("s_a_50").click()
+                        else :
+                            wait.until(EC.element_to_be_clickable((By.ID,'s_a_169')))
+                            browser.find_element_by_id("s_a_169").click()
+                        external_time = datetime.now()
+                        time.sleep(10)
+                        browser.find_element_by_id('tb_0').click()
+                        browser.find_element_by_xpath('//*[@id="tb_item_4"]/button').click()
+                        login_time =(end_time) - (page_load)#####login time
+                        external_time_1 = (external_time) - (end_time)                        
+                        login_time1 = str(login_time)[5:-4]
+                        external_time_2 = str(external_time_1)[5:-4]
+                        f = open('output10.html', 'a+')
+                        #if not os.stat('output.html').st_size>0:
+                         #       f.write("<HTML><TITLE>AWAC</TITLE><BODY background-color:peachpuff><font color =""#99000"" face=""Microsoft Tai le""><H2>AWAC</H2></font><Table border=1 cellpadding=5><TR bgcolor=gray align=center><TD><B>Module</B></TD><TD><B>Login Page</B></TD><TD><B>Login Time</B></TD><TD><B>External Application Navigation</B></TD></TR>")
+                        #f.write(str(login_time))
+                        if (str(page_load_time1) < "3" and str(login_time1) < "20" and str(external_time_2) < "30"):
+                                                f.write("<tr><td>"+line_1+"</td><td bgcolor=#81F781>"+str(page_load_time1)+"</td><td bgcolor=#81F781>"+str(login_time1)+"</td><td bgcolor=#81F781>"+str(external_time_2)+"</td></tr>")
+                        elif(str(page_load_time1) >= "3" or str(login_time1) >= "20" or str(external_time_2) >= "30"):
+                                                f.write("<tr><td>"+line_1+"</td><td bgcolor=#f01313>"+str(page_load_time1)+"</td><td bgcolor=#f01313>"+str(login_time1)+"</td><td bgcolor=#f01313>"+str(external_time_2)+"</td></tr>")
+                                                flag=1
+                                            
+                        #Web service Call starts
+                        #data = { 'location': 'Banglore_DC',
+                        #        'module': line_1.rstrip(),
+                        #       'landing_time': str(page_load_time1),
+                        #      'login_time': str(login_time1),
+                        #      'navigation_time': str(external_time_2)}
+                        #request = Request(url, urlencode(data).encode())
+                        #json = urlopen(request).read().decode()
+                        #Web service Call Ends
+                    except Exception as e:
+                        #print(e)
+                        fexeption.write(traceback.format_exc())
+                        page_load_time1 = str(page_load_time)[5:-4]
+                       # if not os.stat('output.html').st_size>0:
+                        #    f.write("<HTML><TITLE>AWAC</TITLE><BODY background-color:peachpuff><font color =""#99000"" face=""Microsoft Tai le""><H2>AWAC</H2></font><Table border=1 cellpadding=5><TR bgcolor=gray align=center><TD><B>Module</B></TD><TD><B>Login Page</B></TD><TD><B>Login Time</B></TD><TD><B>External Application Navigation</B></TD></TR>")
+                        f.write("<tr><td>"+line_1+"</td><td bgcolor=#81F781>"+str(page_load_time1)+"</td><td bgcolor=#f01313>Error in Execution</td><td bgcolor=#f01313>Error in Execution</td></tr>")                
+            line_1 = fh.readline()
+
+
+f.write("</table><br><Table border=1 cellpadding=5><TR bgcolor=gray align=center><TD><B>Module</B></TD><TD><B>Login Page</B></TD><TD><B>Login Time</B></TD></TR>")
+fo = open("OLAP.txt","r")
+for line in fo:
+    try:
+        start_time = datetime.now()
+        browser.get(line)
+        wait = WebDriverWait(browser, 10)
+        #element = wait.until(EC.element_to_be_clickable((By.ID, 'sawlogonuser')))
+        page_load = datetime.now()
+        page_load_time = (page_load) - (start_time) ########page load time
+        print("page_load"+str(page_load))
+        print("start_time"+str(start_time))
+        page_load_time1 = str(page_load_time)[5:-4]
+        username = browser.find_element_by_id("sawlogonuser")
+        password = browser.find_element_by_id("sawlogonpwd")
+        username.send_keys("weblogic") 
+        password.send_keys("PROD123456")
+        end = datetime.now()
+        browser.find_element_by_id("idlogon").click()        
+        wait = WebDriverWait(browser, 20)        
+        login_time = (end) - (page_load) #########end time
+        login_time1 = str(login_time)[5:-4]
+        time.sleep(10)
+        browser.find_element_by_id('logout').click()
+        f.write("<tr><td>OLAP</td><td bgcolor=#81F781>"+str(page_load_time1)+"</td><td bgcolor=#81F781>"+str(login_time1)+"</td></tr>")
+        #Web service Call starts
+        #data = { 'location': 'Banglore_DC',
+        #'module': 'OLAP',
+        #'landing_time': str(page_load_time1),
+        #'login_time': str(login_time1),
+        #'navigation_time': '0'}
+        #request = Request(url, urlencode(data).encode())
+        #json = urlopen(request).read().decode()
+        #Web service Call Ends
+        f.write("\n")
+        print("OLAP flag", flag)
+    except Exception as e:
+        fexeption.write(traceback.format_exc())
+        f.write("<tr><td>OLAP</td><td bgcolor=#f01313>Error in Execution</td><td bgcolor=#f01313>Not Available</td></tr>")
+        flag=1
+        
+                       
+fd.close()
+f.close()
+fh.close()
+fexeption.close()
+browser.close()
+msg['Subject'] = "CV AWAC check"
+msg['X-Priority'] = '2'
+
+f = open('D:/Rakesh/output10.html', 'r')
+message = (f.read())
+f.close()
+part=MIMEText(message, 'html')
+msg.attach(part) 
+smtpObj = smtplib.SMTP('128.9.24.24')
+print("flag", flag)
+if flag==1:
+    smtpObj.sendmail(sender, receivers, msg.as_string())
+#subprocess.call([r'D:\Rakesh\killtask.bat'])
+#os.system("taskkill /f /im firefox.exe")
+#os.system('taskkill /fi "WindowTitle eq taskeng.exe"')
+#os.system("ta/skkill /f /im  conhost.exe")
+#os.system("taskkill /f /im  pythonw.exe")
+#os.system("taskkill /f /im  geckodriver.exe")
+#os.system("taskkill /f /im  taskeng.exe")
